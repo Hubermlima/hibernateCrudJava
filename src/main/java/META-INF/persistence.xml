@@ -7,21 +7,33 @@
 	<persistence-unit name="project-hibernate">
 
 		<class>model.UsuarioPessoa</class>
+		<class>model.Telefone</class>
 
 		<properties>
+			
 			<property name="hibernate.connection.driver_class"
 				value="org.postgresql.Driver" />
+			
 			<property name="hibernate.connection.url"
 				value="jdbc:postgresql://localhost:5432/datasource-hibernate" />
+			
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQLDialect" />
+			
 			<property name="hibernate.connection.username"
 				value="postgres" />
+			
 			<property name="hibernate.connection.password" value="admin" />
-			<property name="hibernate.format_sql" value="false" />
+			
+			<property name="hibernate.show_sql" value="true" />
+			
+			<property name="hibernate.format_sql" value="true" />
+			
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			
 			<property name="hibernate.temp.use_jdbc_metadata_defaults"
 				value="false" />
+			
 			<property name="hibernate.transaction.jta.platform"
 				value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
 				

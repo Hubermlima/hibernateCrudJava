@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 
 import dao.GenericDao;
+import model.Telefone;
 import model.UsuarioPessoa;
 
 public class TesteHibernate {
@@ -15,17 +16,33 @@ public class TesteHibernate {
 	public void addTest() {
 
 		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+		
 		UsuarioPessoa usuario = new UsuarioPessoa();
 		usuario.setEmail("huber.produtos@gmail.com");
-		usuario.setLogin("huber");
+		usuario.setLogin("huberaba");
 		usuario.setNome("Ana");
 		usuario.setSenha("1atl389guh");
 		usuario.setIdade(45);
 		usuario.setSobrenome("Cristina");
+				
 		usuario = genericDao.update(usuario);
+		
+		
 
 	}
-	
+
+	@Test
+	public void addFone() {
+		GenericDao<Object> genericDao = new GenericDao<>();
+
+		UsuarioPessoa usuario = new UsuarioPessoa();
+		usuario = (UsuarioPessoa) genericDao.finder(new UsuarioPessoa(), 7L); // Pesquiso
+		
+		Telefone telefone = new Telefone("Trabalho", "092", "98402-5926", "120", usuario);
+        telefone.setUsuarioPessoa(usuario);
+        telefone = (Telefone) genericDao.update(telefone);
+        
+	}
 	@Test
 	public void updateTest() {
 
@@ -53,7 +70,7 @@ public class TesteHibernate {
 		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
 		List<UsuarioPessoa> list = genericDao.listAll(new UsuarioPessoa());
 
-		list.forEach(user->System.out.println(user));
+		list.forEach(user-> user.getTelefones().forEach(telefone -> System.out.println(telefone.toString())));
 		
 	}
 
